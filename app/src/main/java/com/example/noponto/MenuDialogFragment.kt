@@ -1,9 +1,11 @@
 package com.example.noponto
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.noponto.databinding.FragmentMenuBinding
 
@@ -30,13 +32,39 @@ class MenuDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // --- Menu Navigation ---
+
+        binding.menuHome.setOnClickListener {
+            // Navigate to WelcomeActivity, clearing other activities on top of it.
+            val intent = Intent(requireContext(), WelcomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(intent)
+            dismiss()
+        }
+
+        binding.menuRegistrarPonto.setOnClickListener {
+            // TODO: Create and navigate to RegistrarPontoActivity
+            Toast.makeText(requireContext(), "Registrar Ponto Clicado!", Toast.LENGTH_SHORT).show()
+            dismiss()
+        }
+
+        binding.menuFuncionarios.setOnClickListener {
+            // TODO: Create and navigate to FuncionariosActivity
+            Toast.makeText(requireContext(), "Funcionários Clicado!", Toast.LENGTH_SHORT).show()
+            dismiss()
+        }
+
+        binding.menuRelatorios.setOnClickListener {
+            // TODO: Create and navigate to RelatoriosActivity
+            Toast.makeText(requireContext(), "Relatórios Clicado!", Toast.LENGTH_SHORT).show()
+            dismiss()
+        }
+
         // Set up the close button
         binding.menuFechar.setOnClickListener {
             dismiss() // Close the dialog
         }
-
-        // TODO: Add OnClickListeners for other menu options
-        // e.g., binding.menuHome.setOnClickListener { ... }
     }
 
     override fun onDestroyView() {
